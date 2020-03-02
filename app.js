@@ -14,6 +14,6 @@ app.use(require('./routes/speaker'))
 
 
 
-app.listen(3000, () => {
+app.listen(3007, () => {
     console.log('port running...')
 })
