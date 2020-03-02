@@ -17,7 +17,22 @@ router.get('/speaker', (req, res) => {
     })
 })
 router.get('/speaker/:speakerID', (req, res) => {
-    res.render('speakers')
+    let pagePhotos = []
+    let pageSpeakers = []
+    data.speakers.forEach((speakerObj) => {
+        if (speakerObj.shortname == req.params.speakerID) {
+            pageSpeakers.push(speakerObj)
+            pagePhotos = speakerObj.artwork
+
+        }
+    })
+    res.render('speaker', {
+        pageTitle: 'Speaker Details',
+        artistName: pageSpeakers.artistName,
+        artwork: pagePhotos,
+        allSpeakers: pageSpeakers,
+        pageID: 'pageSpeakers'
+    })
 })
 
 module.exports = router;
