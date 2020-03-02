@@ -95,6 +95,11 @@
                         <li>Those interested in meeting and making a connection with others in the local art scene.</li>
                     </ul>
                 </article><!-- article -->
+                <div class="pixgrid">
+                    <% artwork.forEach((imgURL)=>{ %>
+                    <img src="images/artwork/<%=imgURL%>" alt="">
+                    <% }) %>
+                </div>
             </aside><!-- secondary -->
         </div>
     </div><!-- container -->
