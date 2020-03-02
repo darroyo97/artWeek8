@@ -5,5 +5,4 @@ router.get('/speaker', (req, res) => {
     res.render('speaker')
 })
 
-
 module.exports = router;
