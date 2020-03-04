@@ -7,6 +7,7 @@ app.set('views', 'views');
 
 app.use(require('./routes/index'));
 app.use(require('./routes/speaker'))
+app.use(require('./routes/feedback'))
 
 
 
@@ -14,6 +15,6 @@ app.use(require('./routes/speaker'))
 
 
 
-app.listen(3010, () => {
+app.listen(3008, () => {
     console.log('port running...')
 })
