@@ -23,7 +23,7 @@ form.addEventListener('submit', (e) => {
         .then((response) => {
             return response.json();
         })
-        .then((msgObj) => {
-            console.log(msgObj)
+        .then((feedBackData) => {
+            console.log(feedBackData)
         })
 })
