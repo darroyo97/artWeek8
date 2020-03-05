@@ -30,6 +30,21 @@ form.addEventListener('submit', (e) => {
             updateFeedback(feedbackData)
         })
 })
+document.querySelector('.feedback-messages').addEventListener('click', (e) => {
+    if (e.target.className == 'glyphicon glyphicon-remove') {
+        //fetch with delete method
+        //api/0  //api/1
+        fetch('/api/' + e.target.id, {
+            method: 'DELETE'
+        })
+            .then((response) => {
+                return response.json()
+            })
+            .then((feedBackData) => {
+                updateFeedback(feedBackData);
+            })
+    }
+})
 let setUP = () => {
     fetch('/api')
         .then((response) => {
@@ -41,6 +56,10 @@ let setUP = () => {
 }
 let updateFeedback = (feedbackData) => {
     let output = "";
+    // [{}, {}, {}, {}]
+    //<button><span id="0"></span></button>
+    //<button><span id="1"></span></button>
+    //<button><span id="3"></span></button>
     feedbackData.forEach((item, key) => {
         output += '     <div class="feedback-item item-list media-list">';
         output += '       <div class="feedback-item media">';
