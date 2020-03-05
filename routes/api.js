@@ -10,6 +10,9 @@ router.use(bodyParser.urlencoded({ extended: false }));
 //converts header json string into a javascript object
 router.use(bodyParser.json())
 //PURPOSE: posting data from client-side form
+router.get('/api', (req, res) => {
+    res.json(feedbackData)
+})
 router.post('/api', (req, res) => {
     //update the json file with form data
     feedbackData.unshift(req.body)
