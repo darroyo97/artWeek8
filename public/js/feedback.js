@@ -1,29 +1,29 @@
-//find form
+// retrieve form dom element from page
 let form = document.querySelector('.feedback-form')
-//add event listener
+// attach event listener
 form.addEventListener('submit', (e) => {
+    // prevent default behaviour
+    // fetch call to post data back to server (/api)
     e.preventDefault();
-    //retrieve values from form
-    let name = document.querySelector('#feedback-form-name')
-    let title = document.querySelector('#feedback-form-title')
-    let message = document.querySelector('feedback-form-message')
-
-
+    let name = document.querySelector('#feedback-form-name');
+    let title = document.querySelector('#feedback-form-title');
+    let message = document.querySelector('#feedback-form-message');
+    //javascript object
+    let data = {
+        name: name.value,
+        title: title.value,
+        message: message.value
+    }
     fetch('/api', {
-        method: "POST",
-        headers: {
-            'Content-type': "application/json"
-        },
-        body: {
-            "name": name.value,
-            "title": title.value,
-            "message": message.value
-        }
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
     })
         .then((response) => {
-            return response.json();
+            //converts to javascript object
+            return response.json()
         })
-        .then((feedBackData) => {
-            console.log(feedBackData)
+        .then((feedbackData) => {
+            console.log(feedbackData);
         })
 })

@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     data.speakers.forEach((speaker) => {
         pagePhotos = pagePhotos.concat(speaker.artwork)
     })
-    console.log(pagePhotos)
+    // console.log(pagePhotos)
 
 
     res.render('index', {

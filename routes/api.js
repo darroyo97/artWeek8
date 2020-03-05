@@ -1,32 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const body_parser = require('body-parser');
-let feedbackData = require('../data/feedback.json')
-router.use(body_parser.urlencoded({ extended: false }));
-const fs = require('fs')
-
-router.get('/api', (req, res) => {
-    res.send('json data')
-})
+const bodyParser = require('body-parser');
+const fs = require('fs');
+let feedbackData = require('../data/feedback.json');
+// [{req.body},{},{},{},{},{}]
+// request (path, http verb) => (middleware) => handler
+//grab form data from header (json)
+router.use(bodyParser.urlencoded({ extended: false }));
+//converts header json string into a javascript object
+router.use(bodyParser.json())
+//PURPOSE: posting data from client-side form
 router.post('/api', (req, res) => {
-
-
-    //take data from our file
-
+    //update the json file with form data
     feedbackData.unshift(req.body)
     fs.writeFile('data/feedback.json', JSON.stringify(feedbackData), 'utf8', (err) => {
         if (err) {
-            console.log(err)
+            console.log(err);
         }
-        console.log(req.body)
+        console.log(req.body);
+        //feedbackData is js object.  Must be converted to json string.
         res.json(feedbackData)
     })
-    res.json({
-        "testing": "json data"
-    })
-
-
-
-
 })
 module.exports = router;
